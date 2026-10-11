@@ -1,0 +1,14 @@
+---
+interface Props {
+  n: number;
+  caption: string;
+}
+const { n, caption } = Astro.props;
+---
+
+<figure class="fig">
+  <div class="ground" tabindex="0" role="region" aria-label={`Figure ${n}, scrollable`}>
+    <slot />
+  </div>
+  <figcaption><b>Fig. {n}</b> {caption}</figcaption>
+</figure>

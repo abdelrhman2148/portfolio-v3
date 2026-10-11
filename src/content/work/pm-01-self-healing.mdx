@@ -1,0 +1,18 @@
+---
+id: PM-01
+sector: Logistics integration
+redact: Client
+title: Self-healing redeploys for high-load incidents
+summary: The same high-load incident kept coming back, and each time someone had to restart the service by hand.
+did: I connected CloudWatch alarms through SNS to a listener that triggers a Jenkins redeploy. I later applied the same loop to a logistics client's integration.
+resultStrong: Mean time to recovery down 40%.
+resultRest: No manual restarts for that incident type.
+stack: [CloudWatch, SNS, Jenkins, Python]
+figure: self-healing
+figCaption: Alarm-driven redeploy loop.
+steps:
+  - I connected CloudWatch alarms through SNS to a listener.
+  - The listener triggers a Jenkins redeploy of the service.
+  - I later applied the same loop to a logistics client's integration.
+order: 1
+---

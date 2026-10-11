@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://abdelrhman-fikri.netlify.app/sitemap-index.xml

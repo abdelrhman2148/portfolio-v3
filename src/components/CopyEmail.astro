@@ -1,0 +1,25 @@
+---
+interface Props {
+  email: string;
+}
+const { email } = Astro.props;
+---
+
+<button class="btn" type="button" id="copy-email" data-email={email}>Copy email</button>
+<span class="status-msg" role="status" id="copy-status"></span>
+
+<script>
+  const btn = document.getElementById('copy-email') as HTMLButtonElement;
+  const status = document.getElementById('copy-status') as HTMLElement;
+  btn.addEventListener('click', async () => {
+    try {
+      await navigator.clipboard.writeText(btn.dataset.email ?? '');
+      status.textContent = 'Email copied';
+    } catch {
+      status.textContent = 'Copy failed. Use the email link instead.';
+    }
+    setTimeout(() => {
+      status.textContent = '';
+    }, 4000);
+  });
+</script>

@@ -1,0 +1,17 @@
+---
+id: PM-04
+sector: 20+ client and internal products
+title: One release setup for 15+ repositories
+summary: Releases across many client and internal products involved manual steps, and every environment was set up by hand.
+did: I moved 15+ repositories onto GitHub Actions and Jenkins pipelines with PR-gated Dev, Staging and Prod environments. Terraform and Ansible now handle environment setup.
+resultStrong: 70% less manual environment setup.
+resultRest: Releases no longer need manual steps.
+stack: [GitHub Actions, Jenkins, Terraform, Ansible, Docker]
+figure: pipeline
+figCaption: Shared release path for every product.
+steps:
+  - I moved 15+ repositories onto GitHub Actions and Jenkins pipelines.
+  - I set up PR-gated Dev, Staging and Prod environments.
+  - Terraform and Ansible now handle environment setup.
+order: 4
+---

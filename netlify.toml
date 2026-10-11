@@ -1,0 +1,9 @@
+# Deploys come only from GitHub Actions (.github/workflows/deploy.yml).
+# Disable Netlify's own Git builds for this site in the Netlify UI (Site configuration > Build & deploy).
+[build]
+  publish = "dist"
+
+[[headers]]
+  for = "/_astro/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"

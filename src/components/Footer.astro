@@ -1,0 +1,21 @@
+---
+import { revisions } from '../data/site';
+const commit = (import.meta.env.PUBLIC_COMMIT ?? 'dev').slice(0, 7);
+const built = new Date().toISOString().slice(0, 10);
+---
+
+<footer class="foot">
+  <h2 id="revision-history">Revision history</h2>
+  <div class="tbl">
+    <table aria-labelledby="revision-history">
+      <thead><tr><th scope="col">Rev</th><th scope="col">Change</th></tr></thead>
+      <tbody>
+        {revisions.map((r) => <tr><td class="mono">{r.rev}</td><td>{r.note}</td></tr>)}
+      </tbody>
+    </table>
+  </div>
+  <p class="colophon mono">
+    <span>© 2026 Abdelrhman Fikri · DevOps Engineer · Cairo, Egypt</span>
+    <span>Built with Astro, deployed with GitHub Actions · {commit} · {built}</span>
+  </p>
+</footer>

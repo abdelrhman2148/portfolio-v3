@@ -1,0 +1,4 @@
+# Link check for the built site. LinkedIn blocks bots (HTTP 999), so it is excluded.
+exclude = ['linkedin\.com']
+accept = ['200..=299']
+max_retries = 2

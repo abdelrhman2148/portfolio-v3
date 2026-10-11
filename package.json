@@ -1,0 +1,42 @@
+{
+  "name": "portfolio-v3",
+  "type": "module",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "lint": "eslint .",
+    "check": "astro check && npm run lint",
+    "test:a11y": "node scripts/with-server.mjs \"pa11y-ci && node scripts/axe-themes.mjs\"",
+    "lhci": "lhci autorun --config=lighthouserc.json && lhci autorun --config=lighthouserc.desktop.json",
+    "og": "node scripts/og.mjs"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.10",
+    "@eslint/js": "^9.39.5",
+    "@lhci/cli": "^0.15.1",
+    "axe-core": "~4.13",
+    "eslint": "^9.39.5",
+    "eslint-plugin-astro": "^1.7.0",
+    "pa11y-ci": "^5.0.0",
+    "puppeteer": "^25.13.0",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.71.1"
+  },
+  "dependencies": {
+    "@astrojs/mdx": "^4.3.14",
+    "@astrojs/sitemap": "^3.7.4",
+    "@fontsource-variable/newsreader": "^5.3.0",
+    "@fontsource/martian-mono": "^5.3.0",
+    "@fontsource/noto-naskh-arabic": "^5.3.0",
+    "@tailwindcss/vite": "^4.3.3",
+    "astro": "^5.18.2",
+    "sharp": "^0.35.5",
+    "tailwindcss": "^4.3.3"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

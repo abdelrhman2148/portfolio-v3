@@ -1,0 +1,15 @@
+/* Runbook design tokens. Light on :root; dark via system preference or [data-theme="dark"]. */
+:root{
+  --paper:#F4F5F7; --ink:#15233F; --muted:#545E72; --rule:#CDD2DB;
+  --rubric:#B4325E; --wash:#F5D9E3; --fig:#E8EBF0; --fig-line:#8E98AB;
+  --serif:"Newsreader Variable","Newsreader",Georgia,"Times New Roman",serif;
+  --mono:"Martian Mono",ui-monospace,Menlo,Consolas,monospace;
+  --arabic:"Noto Naskh Arabic","Geeza Pro",Arial,serif;
+  --col-margin:96px; --col-main:40rem; --gap:40px; --max:1120px;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --paper:#0E1626; --ink:#DCE2EC; --muted:#97A3B7; --rule:#27334B;
+  --rubric:#F29BB8; --wash:#3A2233; --fig:#142038; --fig-line:#55637F; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#0E1626; --ink:#DCE2EC; --muted:#97A3B7; --rule:#27334B;
+  --rubric:#F29BB8; --wash:#3A2233; --fig:#142038; --fig-line:#55637F; color-scheme:dark}

@@ -1,0 +1,26 @@
+<button class="theme" id="theme-toggle" type="button" aria-pressed="false" aria-label="Switch to dark theme">Dark</button>
+
+<script>
+  const root = document.documentElement;
+  const btn = document.getElementById('theme-toggle') as HTMLButtonElement;
+  const mq = matchMedia('(prefers-color-scheme: dark)');
+  const isDark = () => (root.dataset.theme ? root.dataset.theme === 'dark' : mq.matches);
+  const sync = () => {
+    const dark = isDark();
+    btn.setAttribute('aria-pressed', String(dark));
+    btn.setAttribute('aria-label', dark ? 'Switch to light theme' : 'Switch to dark theme');
+    btn.textContent = dark ? 'Light' : 'Dark';
+  };
+  btn.addEventListener('click', () => {
+    const next = isDark() ? 'light' : 'dark';
+    root.dataset.theme = next;
+    try {
+      localStorage.setItem('theme', next);
+    } catch {
+      // storage unavailable: the theme still applies for this visit
+    }
+    sync();
+  });
+  mq.addEventListener('change', sync);
+  sync();
+</script>

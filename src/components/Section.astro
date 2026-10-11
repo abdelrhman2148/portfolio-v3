@@ -1,0 +1,13 @@
+---
+interface Props { id: string; num: string; title: string; class?: string }
+const { id, num, title, class: cls } = Astro.props;
+const hasSide = Astro.slots.has('side');
+---
+<section class:list={['sec', cls]} id={id} aria-labelledby={`${id}-h`}>
+  <div class="num">§{num}</div>
+  <div>
+    <h2 id={`${id}-h`}>{title}</h2>
+    <slot />
+  </div>
+  {hasSide && <div class="side"><slot name="side" /></div>}
+</section>

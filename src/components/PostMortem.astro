@@ -1,0 +1,28 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import Redaction from './Redaction.astro';
+import Figure from './Figure.astro';
+import { figures } from '../figures';
+
+interface Props {
+  entry: CollectionEntry<'work'>;
+}
+const { entry } = Astro.props;
+const d = entry.data;
+const Fig = figures[d.figure];
+---
+
+<article class="pm" aria-labelledby={`${entry.id}-h`}>
+  <p class="id">
+    <span>{d.id}</span><span>{d.sector}</span>
+    {d.redact && <span>{d.redact} <Redaction /></span>}
+  </p>
+  <h3 id={`${entry.id}-h`}><a href={`/work/${entry.id}/`}>{d.title}</a></h3>
+  <Figure n={d.order} caption={d.figCaption}><Fig /></Figure>
+  <dl>
+    <dt>Summary</dt><dd>{d.summary}</dd>
+    <dt>What I did</dt><dd>{d.did}</dd>
+    <dt>Result</dt><dd><span class="result"><strong>{d.resultStrong}</strong></span>{d.resultRest && <> {d.resultRest}</>}</dd>
+    <dt>Stack</dt><dd>{d.stack.join(', ')}</dd>
+  </dl>
+</article>

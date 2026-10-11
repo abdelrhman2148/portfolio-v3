@@ -1,0 +1,48 @@
+name: CI
+
+on:
+  pull_request:
+  workflow_call:
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      PUBLIC_COMMIT: ${{ github.sha }}
+      PUPPETEER_EXECUTABLE_PATH: /usr/bin/google-chrome
+      CHROME_PATH: /usr/bin/google-chrome
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci
+      - name: Type check and lint
+        run: npm run check
+      - name: Build
+        run: npm run build
+      - name: Accessibility (pa11y-ci and axe, both themes)
+        run: npm run test:a11y
+      - name: Lighthouse CI (mobile and desktop, 95+ budgets)
+        run: npm run lhci
+      - name: Link check
+        uses: lycheeverse/lychee-action@v2
+        with:
+          args: --offline --root-dir "${{ github.workspace }}/dist" --config .lychee.toml './dist/**/*.html'
+          fail: true
+      - name: Upload Lighthouse reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lighthouse
+          path: .lighthouseci/
+          retention-days: 7

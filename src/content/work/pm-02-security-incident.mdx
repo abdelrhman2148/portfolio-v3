@@ -1,0 +1,19 @@
+---
+id: PM-02
+sector: Security incident
+redact: Account
+title: Responding to a compromised AWS account
+summary: Unexpected cost anomalies showed that a company AWS account had been compromised.
+did: I rebuilt the timeline from the cost data, removed rogue IAM users, closed exposed ports, stopped SES and domain abuse, and cleared the domain's malware warning. Then I added MFA, least-privilege IAM and budget alarms.
+resultStrong: Account recovered, with guardrails in place to prevent a repeat.
+stack: [IAM, SES, Route 53, AWS Budgets]
+figure: timeline
+figCaption: Incident timeline, in order.
+steps:
+  - I rebuilt the timeline from the cost data.
+  - I removed rogue IAM users and closed exposed ports.
+  - I stopped SES and domain abuse, and cleared the domain's malware warning.
+  - I added MFA and least-privilege IAM.
+  - I set budget alarms.
+order: 2
+---

@@ -1,0 +1,17 @@
+{
+  "defaults": {
+    "standard": "WCAG2AA",
+    "runners": ["axe", "htmlcs"],
+    "timeout": 60000,
+    "hideElements": ".fig svg text",
+    "chromeLaunchConfig": { "args": ["--no-sandbox"] }
+  },
+  "urls": [
+    "http://localhost:4321/",
+    "http://localhost:4321/work/pm-01-self-healing/",
+    "http://localhost:4321/work/pm-02-security-incident/",
+    "http://localhost:4321/work/pm-03-bedrock/",
+    "http://localhost:4321/work/pm-04-release-setup/",
+    "http://localhost:4321/404.html"
+  ]
+}

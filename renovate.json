@@ -1,0 +1,10 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:recommended"],
+  "schedule": ["before 6am on monday"],
+  "packageRules": [
+    { "matchUpdateTypes": ["minor", "patch"], "matchDepTypes": ["devDependencies"], "groupName": "dev dependencies", "automerge": true },
+    { "matchPackageNames": ["astro", "@astrojs/mdx", "@astrojs/sitemap"], "groupName": "astro" },
+    { "matchPackageNames": ["typescript"], "allowedVersions": "<6" }
+  ]
+}

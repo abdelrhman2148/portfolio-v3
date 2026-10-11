@@ -1,0 +1,20 @@
+<svg viewBox="0 0 600 150" role="img" aria-label="Service raises a CloudWatch alarm, SNS notifies a listener, the listener triggers a Jenkins redeploy of the service">
+  <defs>
+    <marker id="ar1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="var(--fig-line)"></path></marker>
+    <marker id="ar1r" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="var(--rubric)"></path></marker>
+  </defs>
+  <g font-family="var(--serif)" font-size="16" fill="var(--ink)" text-anchor="middle">
+    <rect x="2" y="40" width="96" height="44" fill="none" stroke="var(--ink)"></rect><text x="50" y="67">Service</text>
+    <rect x="128" y="40" width="118" height="44" fill="none" stroke="var(--ink)"></rect><text x="187" y="67">CloudWatch</text>
+    <rect x="276" y="40" width="80" height="44" fill="none" stroke="var(--ink)"></rect><text x="316" y="67">SNS</text>
+    <rect x="386" y="40" width="94" height="44" fill="none" stroke="var(--ink)"></rect><text x="433" y="67">Listener</text>
+    <rect x="510" y="40" width="88" height="44" fill="var(--wash)" stroke="var(--rubric)" stroke-width="1.5"></rect><text x="554" y="67">Jenkins</text>
+  </g>
+  <g stroke="var(--fig-line)" fill="none" stroke-width="1.2">
+    <path d="M98 62H126" marker-end="url(#ar1)"></path><path d="M246 62H274" marker-end="url(#ar1)"></path><path d="M356 62H384" marker-end="url(#ar1)"></path><path d="M480 62H508" marker-end="url(#ar1)"></path>
+    <path d="M554 84V122H50V86" stroke="var(--rubric)" stroke-dasharray="5 4" marker-end="url(#ar1r)"></path>
+  </g>
+  <g font-family="var(--mono)" font-size="12" fill="var(--muted)" text-anchor="middle">
+    <text x="187" y="28">high-load alarm</text><text x="302" y="142">redeploy, no manual step</text>
+  </g>
+</svg>

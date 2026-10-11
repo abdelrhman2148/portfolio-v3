@@ -1,0 +1,20 @@
+---
+id: PM-03
+sector: Regulated industry, document processing
+redact: Client
+title: Claude on Amazon Bedrock for a regulated client
+summary: A document-processing platform needed LLM features without breaking the client's data-retention and access rules.
+did: I deployed Claude models on Amazon Bedrock with Zero Data Retention enforced, least-privilege IAM, and CloudWatch alarms on cost and usage.
+resultStrong: Met the client's data-retention and access-control requirements.
+stack: [Amazon Bedrock, IAM, CloudWatch]
+figure: bedrock
+figCaption: Model access inside the retention boundary.
+constraints:
+  - The client's data-retention rules.
+  - The client's access-control rules.
+steps:
+  - I deployed Claude models on Amazon Bedrock with Zero Data Retention enforced.
+  - I limited access with least-privilege IAM.
+  - I added CloudWatch alarms on cost and usage.
+order: 3
+---

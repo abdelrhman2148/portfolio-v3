@@ -1,0 +1,158 @@
+---
+import { getCollection } from 'astro:content';
+import Doc from '../layouts/Doc.astro';
+import Section from '../components/Section.astro';
+import Sidenote from '../components/Sidenote.astro';
+import Plate from '../components/Plate.astro';
+import PostMortem from '../components/PostMortem.astro';
+import CopyEmail from '../components/CopyEmail.astro';
+import portrait from '../assets/portrait-square.jpg';
+import fullBody from '../assets/full-body.jpg';
+import {
+  abstract, contents, results, otherWork, roles, certs, tools, services, process, faq, EMAIL, LINKEDIN,
+} from '../data/site';
+
+const work = (await getCollection('work')).sort((a, b) => a.data.order - b.data.order);
+---
+
+<Doc>
+  <div class="doc">
+    <section class="sec title" aria-labelledby="name">
+      <div class="num">AF-RB<br />001</div>
+      <div>
+        <p class="meta-line mono"><span>Runbook</span><span>Revision 2026.10</span><span>Cairo, Egypt</span></p>
+        <h1 id="name">Abdelrhman Fikri</h1>
+        <p class="role">DevOps Engineer</p>
+        <div class="abstract">
+          <span class="lbl">Abstract</span>
+          <p>{abstract}</p>
+        </div>
+        <p class="status"><mark>Open to full-time roles and freelance projects.</mark> Based in Cairo, open to remote work and relocation.</p>
+        <div class="routes">
+          <div class="route">
+            <span class="who">If you're hiring</span>
+            <p>Experience, certifications and the full CV.</p>
+            <a href="#experience">Go to §3 Experience</a>
+          </div>
+          <div class="route">
+            <span class="who">If you have a project</span>
+            <p>What I take on and how a project runs.</p>
+            <a href="#freelance">Go to §4 Freelance</a>
+          </div>
+        </div>
+      </div>
+      <div class="side">
+        <Plate src={portrait} alt="Abdelrhman Fikri" label="Plate I" loading="eager" />
+        <p class="ar" lang="ar" dir="rtl">عبدالرحمن فكري</p>
+      </div>
+    </section>
+
+    <Section id="contents" num="0" title="Contents">
+      <ol class="toc">
+        {contents.map((c) => (
+          <li><a href={c.href}><span class="n">{c.n}</span><span>{c.label}</span><span class="d">{c.d}</span></a></li>
+        ))}
+      </ol>
+      <Fragment slot="side">
+        <Sidenote label="Note">All client work is under NDA. The cases name the industry, the architecture and the measured result. They never name the client.</Sidenote>
+      </Fragment>
+    </Section>
+
+    <Section id="results" num="1" title="Results">
+      <div class="tbl">
+        <table>
+          <caption>Table 1. Measures across the products I run at Genesis Creations</caption>
+          <thead><tr><th scope="col">Measure</th><th scope="col">Value</th></tr></thead>
+          <tbody>
+            {results.map((r) => <tr><th scope="row">{r.measure}</th><td class="big">{r.value}</td></tr>)}
+          </tbody>
+        </table>
+      </div>
+      <Fragment slot="side">
+        <Sidenote label="Scope">Measured across a 2–3 person DevOps team supporting 20+ client and internal products.</Sidenote>
+      </Fragment>
+    </Section>
+
+    <Section id="work" num="2" title="Work, written as post-mortems">
+      {work.map((entry) => <PostMortem entry={entry} />)}
+      <h3 class="sub">Other work</h3>
+      <ul class="other">
+        {otherWork.map((o) => <li>{o}</li>)}
+      </ul>
+      <Fragment slot="side">
+        <Sidenote label="How to read these">Each case follows the format I use for real incident reviews: summary, what I did, measured result.</Sidenote>
+        <Sidenote label="Diagrams">Drawn by me for this site. They show the architecture, not client systems.</Sidenote>
+      </Fragment>
+    </Section>
+
+    <Section id="experience" num="3" title="Experience and certifications">
+      <div class="tbl">
+        <table class="roles">
+          <caption>Table 2. Roles, newest first</caption>
+          <thead><tr><th scope="col">Dates</th><th scope="col">Role</th></tr></thead>
+          <tbody>
+            {roles.map((r) => (
+              <tr>
+                <td>{r.dates}</td>
+                <td>
+                  {r.title}{r.current && <span class="cur">current</span>}
+                  <small>{r.company}{r.note && <>{r.company.endsWith('.') ? ' ' : '. '}{r.note}</>}</small>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <h3 class="sub">Certifications</h3>
+      <ul class="certs">
+        {certs.map((c) => <li class:list={{ key: c.key }}><span>{c.name}</span><span>{c.code}</span></li>)}
+      </ul>
+      <h3 class="sub">Tools</h3>
+      <p>{tools}</p>
+      <div class="actions">
+        <a class="btn" href="/cv.pdf">Download CV (PDF)</a>
+        <a class="btn line" href={LINKEDIN}>LinkedIn profile</a>
+      </div>
+      <Fragment slot="side">
+        <Sidenote label="Education">B.Sc. Communication Engineering, MTI University.</Sidenote>
+        <Sidenote label="Recognition">Employee of the Month six times, and the Continuous Learning Award, at Genesis Creations.</Sidenote>
+        <Sidenote label="Languages">Arabic (native), English (fluent).</Sidenote>
+      </Fragment>
+    </Section>
+
+    <Section id="freelance" num="4" title="Freelance">
+      <p>I take on DevOps work for startups and small teams alongside my full-time role.</p>
+      <dl class="svc">
+        {services.map((s) => <><dt>{s.t}</dt><dd>{s.d}</dd></>)}
+      </dl>
+      <h3 class="sub">How a project runs</h3>
+      <ol class="proc">
+        {process.map((p) => <li><span><b>{p.t}</b> {p.d}</span></li>)}
+      </ol>
+      <Fragment slot="side">
+        <Sidenote label="Fit">Best for teams with live users and no dedicated DevOps engineer yet.</Sidenote>
+      </Fragment>
+    </Section>
+
+    <Section id="known-issues" num="5" title="Known issues" class="faq">
+      {faq.map((f, i) => (
+        <details>
+          <summary><span class="ki">KI-{String(i + 1).padStart(2, '0')}</span><span>{f.q}</span></summary>
+          <p>{f.a}</p>
+        </details>
+      ))}
+    </Section>
+
+    <Section id="contact" num="6" title="Contact" class="contact">
+      <p>For a role, send the job description. For a project, tell me what you run today and what's going wrong.</p>
+      <p class="addr"><a href={`mailto:${EMAIL}`}>{EMAIL}</a></p>
+      <div class="actions">
+        <CopyEmail email={EMAIL} />
+        <a class="btn line" href={LINKEDIN}>LinkedIn profile</a>
+      </div>
+      <Fragment slot="side">
+        <Plate src={fullBody} alt="" label="Plate II" tall widths={[240, 480]} sizes="(max-width: 1000px) 240px, 240px" />
+      </Fragment>
+    </Section>
+  </div>
+</Doc>
